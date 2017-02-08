@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    <property name="LOG_DIR" value="c:/temp"/>
+
+    <!--Loggers-->
+    <logger name="my.company" level="DEBUG"/>
+
+    <!--Root logger-->
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE_ROLLER"/>
+    </root>
+
+    <!--Appenders-->
+    <appender name="STDOUT" class="com.crunchify.controller.CrunchifyHelloWorld">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_ROLLER" class="com.crunchify.controller.CrunchifyHelloWorld">
+        <file>${LOG_DIR}/mylog.log</file>
+        <rollingPolicy class="com.crunchify.controller.CrunchifyHelloWorld">
+            <fileNamePattern>mylog.%d{yyyy-mm-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+</configuration>
